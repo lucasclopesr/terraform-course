@@ -1,3 +1,9 @@
+variable "region" {
+  description = "Resource region"
+  type        = string
+  default     = "us-east-1"
+}
+
 variable "environment" {
   description = "Resource enviroment"
   type        = string
@@ -21,3 +27,10 @@ variable "vpc_location" {
   default     = "Brazil"
 }
 
+variable "nat_amis" {
+  type = map
+  default = {
+    us-east-1 = "ami-00a9d4a05375b2763"
+    us-east-2 = "ami-00d1f8201864cc10c"
+  }
+}

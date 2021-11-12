@@ -9,7 +9,7 @@ terraform {
 
 # Configure the AWS Provider specifically to use in localhost with localstack
 provider "aws" {
-  region                      = "us-east-1"
+  region                      = var.region
   s3_force_path_style         = true
   access_key                  = "test"
   secret_key                  = "test"
@@ -60,20 +60,3 @@ terraform {
   }
 }
 
-# Resources:
-#   first arg: type of resource, second arg: logical name
-resource "aws_vpc" "my_first_vpc" {
-  cidr_block = var.vpc_cidr
-
-  instance_tenancy = "default"
-
-  tags = {
-    Name = var.vpc_name
-		environment = var.environment
-    location = var.vpc_location
-  }
-}
-
-output "vpc_cid" {
-  value = "${aws_vpc.my_first_vpc.id}"
-}
